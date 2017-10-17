@@ -14,7 +14,7 @@ namespace ImageToTiled.Tests
         public TestContext TestContext { get; set; }
         
         [DataTestMethod]
-        [DataRow("Data/map0.png", "Data/Overworld.tsx")]
+        [DataRow("Data/map0.png", "Data/NewFolder 1/Overworld.tsx")]
         public void TestProcess(string image, string tileset)
         {
             var output = Program.GetOutputPath(Path.Combine(TestContext.TestRunResultsDirectory, Path.GetFileName(image)));

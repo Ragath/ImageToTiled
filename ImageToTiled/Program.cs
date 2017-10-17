@@ -131,8 +131,8 @@ namespace ImageToTiled
     static class Extensions
     {
         public static string MakeRelativePath(this string path, string relativeTo)
-              => new Uri(Path.GetDirectoryName(Path.GetFullPath(relativeTo)) + Path.DirectorySeparatorChar)
+              => Uri.UnescapeDataString(new Uri(Path.GetDirectoryName(Path.GetFullPath(relativeTo)) + Path.DirectorySeparatorChar)
               .MakeRelativeUri(new Uri(Path.GetFullPath(path)))
-              .ToString();
+              .ToString());
     }
 }

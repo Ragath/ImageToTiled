@@ -22,9 +22,18 @@ namespace ImageToTiled
                 {
                     var c = bmp.GetPixel(x, y);
                     data[i++] = c.A;
-                    data[i++] = c.R;
-                    data[i++] = c.G;
-                    data[i++] = c.B;
+                    if (c.A == 0)
+                    {
+                        data[i++] = 0;
+                        data[i++] = 0;
+                        data[i++] = 0;
+                    }
+                    else
+                    {
+                        data[i++] = c.R;
+                        data[i++] = c.G;
+                        data[i++] = c.B;
+                    }
                 }
             //Marshal.Copy(bmpData.Scan0, data, 0, data.Length);
 

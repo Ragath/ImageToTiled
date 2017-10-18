@@ -1,18 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net462</TargetFramework>
+    <TargetFramework>net46</TargetFramework>
     <OutputType>Exe</OutputType>
-    <ApplicationIcon />
-    <StartupObject />
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="TiledLib" Version="2.0.0" />
+    <PackageReference Include="GitVersionTask" Version="4.0.0-beta0012">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
-
+  
+  <Target Condition="$(Configuration) == 'Release'" Name="GitVersionWorkaround" BeforeTargets="Build">
+    <MSBuild Targets="restore" Projects="$(MSBuildProjectFile)" Properties="version=$(GitVersion_SemVer)"></MSBuild>
+  </Target>
+  <Target Name="VersionMessage" AfterTargets="Build">
+    <Message Importance="high" Text="Version: $(GitVersion_SemVer)" />
+  </Target>
 </Project>

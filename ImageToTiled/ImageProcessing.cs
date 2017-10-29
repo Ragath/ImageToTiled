@@ -11,7 +11,7 @@ namespace ImageToTiled
         static System.Security.Cryptography.SHA1 sha1 { get; } = System.Security.Cryptography.SHA1.Create();
         public static byte[] GetTileHash(this Bitmap bmp, Rectangle rect)
         {
-            var format = bmp.PixelFormat; //PixelFormat.Format32bppArgb;
+            var format = System.Drawing.Imaging.PixelFormat.Format32bppArgb; //bmp.PixelFormat;
 
             //var bmpData = bmp.LockBits(rect, ImageLockMode.ReadOnly, format);
 
